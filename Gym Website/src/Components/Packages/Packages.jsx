@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { packages } from '../../assets/data'
 import PackageCard from './PackageCard'
 import JoinNow from '../JoinNow/JoinNow'
 import { useState,useEffect } from 'react'
+import AuthContext from '../Context/AuthContext'
 
 const Packages = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);

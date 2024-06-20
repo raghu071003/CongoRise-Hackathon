@@ -77,6 +77,12 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+.profile-bg{
+  background: url(https://wallpapercave.com/wp/wp9220724.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .sup-bg {
   background: url('https://wallpapercave.com/wp/wp12424989.jpg');

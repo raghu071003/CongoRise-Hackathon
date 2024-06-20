@@ -72,13 +72,54 @@ app.post('/register',async(req,res)=>{
     
 })
 
-app.post('/getmembership',verifyToken,async (req,res)=>{
-    const userData = req.user;
-    const email = userData.email;
-    const {planId} = req.body;
+app.post('/getmembership', verifyToken, async (req, res) => {
+    try {
+        const userData = req.user;
+        if (!userData) {
+            return res.status(401).json({ message: 'User data not found' });
+        }
+        const email = userData.email;
+        const { membership } = req.body;
+        const {timeId} = req.body;
+        console.log(timeId);
+        var {slots} = await Timings.findOne({timeId})
+        const date = new Date();
+        const purchasedOn = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        if (!membership) {
+            return res.status(400).json({ message: 'Plan ID is required' });
+        }
+        if(slots <=0){
+            return res.status(401).json({message:'Slots Complete!'})
+        }
+        else{
+            slots -= 1;
+            console.log(slots);
+            const updatedUser = await Users.findOneAndUpdate(
+                { email },
+                { membership,purchasedOn,timeId},
+                { new: true } 
+            );
+            const updatedTimings = await Timings.findOneAndUpdate({timeId},{slots})
+            if (!updatedUser) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+        res.status(200).json({ message: 'Plan updated successfully', user: updatedUser });
 
-    const user = await Users.findOne({email});
-
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+const Timings = require('./Models/Timings.js')
+app.get('/timings',async (req,res)=>{
+    try{
+        const timings = await Timings.find();
+        res.send(timings)
+    }
+    catch(e){
+        console.log(e);
+    }
 })
 
 app.post('/checkmembership',verifyToken,async(req,res)=>{

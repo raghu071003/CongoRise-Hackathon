@@ -17,10 +17,8 @@ const Home = () => {
             <div className=''>
               <h1 className='text-white  text-8xl'>Welcome,</h1>
               <p className='text-yellow-400 sub-font font-lg  '>Start Your Fitness Journey with <b>Panther Gym</b> .</p>
-              {/* {isAuthenticated ? <button className='text-white border-2 border-yellow-400 p-3 rounded-xl mt-4 hover:bg-white hover:text-black' onClick={()=>navigate('/checkMembership')} > Timings</button>
-                :
-                <button className=" px-4 my-10 text-2xl border-2 text-white hover:shadow-md rounded-xl hover:bg-white hover:text-black hover:shadow-white" onClick={() => navigate('/register')}>Register</button>
-              } */}
+              {isAuthenticated && <button className='text-white border-2 border-yellow-400 p-3 rounded-xl mt-4 hover:bg-white hover:text-black' onClick={()=>navigate('/profile')} > See my Profile</button>
+              }
 
             </div>
 

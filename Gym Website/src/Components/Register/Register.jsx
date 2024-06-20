@@ -20,7 +20,6 @@ const Register = () => {
     formData.append('email',email);
     formData.append('password',password);
     formData.append('mobile',mobile);
-    console.log(isAuthenticated);
     const response = axios.post('http://localhost:4080/register',formData,{
       headers:{
         "Content-Type":'application/json'
@@ -46,10 +45,7 @@ const Register = () => {
                     <input type="password" placeholder='password' className='outline-none bg-transparent text-2xl m-3 p-4 border-b-2 text-white' onChange={(e)=>setPassword(e.target.value)}  />
                     <input type="number" placeholder='Mobile' className='outline-none bg-transparent text-2xl m-3 p-4 border-b-2 text-white' onChange={(e)=>setMobile(e.target.value)}  />
                     <p className='text-white text-xl m-4'>Aldready have an account? <span className='text-yellow-400 cursor-pointer' onClick={() => navigate('/login')}>Login</span> </p>
-                    {isAuthenticated ?  <button className='text-white border-2 border-yellow-400 p-3 rounded-xl mt-4 hover:bg-white hover:text-black' >Check MemberShip</button>
-                    :
                     <button className='text-white border-2 border-yellow-400 p-3 rounded-xl mt-4 hover:bg-white hover:text-black' type='submit'>Register</button>
-                    }
             </form>
           </div>
           

@@ -2,10 +2,10 @@ import { useState } from "react"
 import UserContext from "./Context"
 
 function ContextProvider({children }) {
-    const [isLoggedin,setIsLoggedin] = useState(false);
+    const [isLoggedin,setIsLoggedIn] = useState(false);
      
   return (
-    <UserContext.Provider value={{isLoggedin,setIsLoggedin}}>
+    <UserContext.Provider value={{isLoggedin,setIsLoggedIn}}>
      {children} 
     </UserContext.Provider>
   )

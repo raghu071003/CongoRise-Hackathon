@@ -15,6 +15,7 @@ import AuthContext from './Components/Context/AuthContext'
 import { Navigate } from 'react-router-dom'
 import Payment from './Components/Payment/Payment'
 import CheckMemberShip from './Components/Membership/CheckMemberShip'
+import Profile from './Components/Profile/Profile'
 
 
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='/timings' element={<Timings /> } />
           <Route path='/register' element={<Register />} />
           <Route path='/supplements' element={<Supplements />} />
+          <Route path='/profile' element={isAuthenticated ? <Profile /> : <Navigate to='/login' replace />} />
           <Route path='/checkMembership' element= {isAuthenticated ? <CheckMemberShip />: <Navigate to="/login" replace />} />
           <Route path='/payment' element={isAuthenticated ? <Payment />: <Navigate to="/login" replace />} />
 

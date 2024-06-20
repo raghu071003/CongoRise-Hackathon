@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react';
 import { useRef } from 'react';
+import AuthContext from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const Payment = () => {
+    const navigate = useNavigate()
     const [cardNumber, setCardNumber] = useState('');
     const [expiry, setExpiry] = useState('');
     const [cvv, setCvv] = useState('');
@@ -13,19 +17,51 @@ const Payment = () => {
     const [amount, setAmount] = useState(0)
 
     const [errorMessage, setErrorMessage] = useState('');
+    const {accessToken} = useContext(AuthContext)
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
-
-        // Basic validation (for demonstration purposes)
-        if (!cardNumber || !expiry || !cvv || !upiId || !membership || !timing) {
-            setErrorMessage('Please fill out all fields.');
+        if(upiId && cardNumber){
+            alert('Please choose any one payment method')
+        }
+        
+        
+        if(cardNumber){
+            if (!cardNumber || !expiry || !cvv || !membership || !timing) {
+                setErrorMessage('Please fill out all fields.');
+                return;
+            }
+            if(cardNumber.length < 16){
+                setErrorMessage("Invalid Card Number")
+                }
+        }
+        else{
+            
+        if(!upiId || !membership || !timing){
+            setErrorMessage('Please fill out all fields')
             return;
         }
+        }
+        
+        console.log(document.getElementById('timing').value);
 
-        setTimeout(() => {
-            setErrorMessage('Payment failed. Please try again.');
-        }, 2000);
+        try{
+            const timeId=Number(document.getElementById('timing').value);
+            const res = axios.post('http://localhost:4080/getmembership',{membership :`${document.getElementById('membership').value}`,timeId:timeId},{
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization' : `Bearer ${accessToken}`
+                }
+            }
+            )
+            if(res.status === 200){
+                // navigate('/PaymentSuccess');
+                console.log('Success');
+            }
+        }
+        catch(e){
+            console.log(e)
+        }
         setCardNumber('');
         setExpiry('');
         setCvv('');
@@ -42,7 +78,6 @@ const Payment = () => {
                 <h2 className="text-2xl font-bold mb-4 tracking-widest text-white">Secure <span className='text-yellow-400'>Payment</span></h2>
 
                 <form onSubmit={handleSubmit} >
-                    {/* Card details section */}
                     <div className="mb-4">
                         <label htmlFor="card-number" className="block text-white font-medium mb-2">
                             Card Number
@@ -85,6 +120,8 @@ const Payment = () => {
                             />
                         </div>
                     </div>
+
+                    <h1 className='text-center text-white text-3xl'>OR</h1>
 
                     {/* UPI ID section */}
                     <div className="mb-4">
@@ -137,6 +174,19 @@ const Payment = () => {
                             <option value="3">Afternoon (4:00 PM - 6:00 PM)</option>
                             <option value="4">Evening (6:00 PM - 8:00 PM)</option>
                         </select>
+                    </div>
+
+                    <div className="mb-4">
+                        <label htmlFor="upi-id" className="block text-white font-medium mb-2">
+                            PROMO CODE
+                        </label>
+                        <input
+                            type="text"
+                            id="upi-id"
+                            className="w-full py-2 px-3 border border-gray-300 rounded-lg"
+                            placeholder="Enter PROMO CODE"
+                            value={upiId}
+                        />
                     </div>
 
                     {/* Error message section */}
