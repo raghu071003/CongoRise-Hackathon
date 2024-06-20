@@ -5,7 +5,7 @@ import SupplementCard from './SupplementCard';
 
 const Supplements = () => {
   return (
-    <div className='time-bg flex flex-col h-fit w-full'>
+    <div className='time-bg flex flex-col h-fit w-full fade-in'>
             <div className='overlay h-screen w-full'></div>
 
             <div className='mt-36  z-10 '>

@@ -19,7 +19,6 @@ const Profile = () => {
                         'Authorization': `Bearer ${accessToken}`
                     }
                 });
-                console.log(res);
                 if (res.status === 200) {
                     setName(res.data.name);
                     setMembership(res.data.membership);
@@ -49,7 +48,7 @@ const Profile = () => {
         fetchData();
     }, []);
     return (
-        <div className=' profile-bg text-white flex justify-center items-center h-screen w-full'>
+        <div className=' profile-bg text-white flex justify-center items-center h-screen w-full fade-in'>
             <div className='overlay'></div>
             <div className='flex flex-col justify-center border p-8 gap-2  rounded-xl z-10'>
                 <h1 className='text-center text-5xl m-10'>My <span className='text-yellow-400'>Profile</span></h1>

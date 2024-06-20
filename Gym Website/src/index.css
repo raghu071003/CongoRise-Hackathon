@@ -16,6 +16,12 @@ body {
 
 }
 
+.loading-bg{
+  background: url('./assets/Loading.png');
+  background-position: center;
+  background-size: contain;
+}
+
 .pay-bg {
   background: url('https://wallpapercave.com/wp/wp5339186.jpg');
   background-size: cover;
@@ -198,3 +204,63 @@ input[type=number]::-webkit-outer-spin-button {
     grid-template-columns: repeat(6, 1fr);
   }
 }
+
+
+
+/*Animations */
+
+.drop-opt{
+  transform: rotateY(360deg);
+}
+.fade-in{
+  opacity: 0;
+  animation: fade 1s forwards;
+}
+.zoom-in {
+  transform: scale(0.5);
+  animation: zoomIn 2s forwards;
+}
+.zoom-in-fast {
+  opacity: 0;
+  transform: scale(0.5);
+  animation: zoomIn 1s forwards;
+}
+
+.fade-in-out{
+  opacity: 0;
+  animation: fadeInOut 1s forwards infinite;
+}
+
+@keyframes zoomIn {
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes fade{
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    }
+    50%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
+    }
+}
+@keyframes flip{
+  0% {
+    transform: rotateY(0deg);
+    }
+    100%{
+      transform: rotateY(360deg);
+      }
+}
+

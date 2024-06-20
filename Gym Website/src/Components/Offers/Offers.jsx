@@ -6,7 +6,7 @@ import JoinNow from '../JoinNow/JoinNow'
 const Offers = () => {
   return (
     <div>
-      <div className='offer-bg flex flex-col items-center'>
+      <div className='offer-bg flex flex-col items-center fade-in'>
         <div className='overlay'></div>
         <h1 className='text-white z-10 border-b-2 text-5xl mt-36'>OUR <span className='text-yellow-400'>OFFERS</span></h1>
           <div className='flex flex-1  flex-wrap justify-center mt-20 gap-5'>

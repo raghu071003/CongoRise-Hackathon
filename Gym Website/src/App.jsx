@@ -16,6 +16,7 @@ import { Navigate } from 'react-router-dom'
 import Payment from './Components/Payment/Payment'
 import CheckMemberShip from './Components/Membership/CheckMemberShip'
 import Profile from './Components/Profile/Profile'
+import Loading from './Components/Loading/Loading'
 
 
 

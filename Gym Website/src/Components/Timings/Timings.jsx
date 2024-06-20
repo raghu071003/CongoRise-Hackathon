@@ -1,6 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import TimingCard from './TimingCard'
 import axios from 'axios'
+import Loading from '../Loading/Loading';
 
 const Timings = () => {
     const [data, setData] = useState(null);
@@ -23,10 +24,12 @@ const Timings = () => {
     }, []);
   
   
-    if (loading) return <div>Loading...</div>;
+    if (loading) 
     if (error) return <div>Error: {error.message}</div>;
     return (
-        <div className='time-bg flex flex-col h-screen w-full'>
+        <>
+        {loading ? <Loading /> :  
+        <div className='time-bg flex flex-col h-screen w-full fade-in'>
             <div className='overlay h-screen w-full'></div>
             <div className='mt-36  z-10 '>
                 <div className='flex flex-col justify-center items-center'>
@@ -43,6 +46,9 @@ const Timings = () => {
             </div>
 
         </div>
+        }
+        </>
+        
     )
 }
 

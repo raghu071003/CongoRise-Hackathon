@@ -72,7 +72,7 @@ const Payment = () => {
 
     };
     return (
-        <div className="min-h-screen pay-bg flex items-center justify-center">
+        <div className="min-h-screen pay-bg flex items-center justify-center fade-in">
             <div className='overlay'></div>
             <div className="backdrop-blur-xl p-8 shadow-lg rounded-lg w-full md:w-1/2 lg:w-1/3 z-10">
                 <h2 className="text-2xl font-bold mb-4 tracking-widest text-white">Secure <span className='text-yellow-400'>Payment</span></h2>

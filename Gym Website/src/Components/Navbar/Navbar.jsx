@@ -7,9 +7,9 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const {isAuthenticated,logout} = useContext(AuthContext)
+  const [profileopt,setProfileopt] = useState(false)
 
 
-  // Update windowWidth state on window resize
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -18,17 +18,17 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Toggle menu on mobile view (below 640px)
   const toggleMenu = () => {
     if (windowWidth <= 640) {
       setMenu(!menu);
     }
   };
+  const toggleProfileOpt = () => (setProfileopt(prev => !prev));
 
   
 
 return (
-  <div className='absolute top-0 left-0 w-full bg-transparent flex justify-around items-center p-4 md:p-8 z-50'>
+  <div className='absolute top-0 left-0 w-full bg-transparent flex justify-around items-center p-4 md:p-8 z-50 fade-in'>
     <div className='flex justify-between gap-10'>
       <div className={`md:flex sm:hidden gap-6 text-lg md:text-2xl justify-between md:justify-end items-center ${windowWidth > 640 ? '' : 'hidden'}`}>
         <NavLink
@@ -75,10 +75,18 @@ return (
         >
           Login
         </NavLink> : <button
-          onClick={logout}
-          className='text-[#e3e3e3] hover:border-b-2 hover:border-yellow-200'
+          // onClick={logout}
+          className='text-[#e3e3e3]  hover:border-yellow-200'
         >
-          Logout
+          <div className='flex items-center gap-2' onClick={toggleProfileOpt}>
+          <img src="https://www.citypng.com/public/uploads/small/11639594342hjraqgbufi3xlb66lt30fz1pwfcydxkjqbynfqdpvufz41ysjtngiet4dyrywgqqqqu56w5nozgrhyecs4ixrlllkl150ogbiid1.png" width={40} alt="" />
+          <img src="https://th.bing.com/th/id/R.3b9af8535d4e7845c8ea482528b2aca9?rik=A9tWdYv9ubUwlw&riu=http%3a%2f%2fdmconsulting.net%2fwp-content%2fuploads%2f2017%2f09%2fDrop-down-arrow-icon-rounded.png&ehk=qtJ7gpnDEcf7ZqT0JfV1l4naJzSy15CMVb7r6SpAkX0%3d&risl=&pid=ImgRaw&r=0" alt="" className={` ${profileopt ?  'drop-opt' : ''}w-6 h-6`}  />
+          </div>
+          
+          <ul className={`${profileopt ? 'flex flex-col' : 'hidden'} absolute gap-3 my-3` }>
+            <NavLink className={({ isActive }) => `${isActive ? 'border-b-4 border-yellow-400' : ''} text-[#e3e3e3] hover:border-b-2 hover:border-yellow-200`} to='/profile'>Profile</NavLink>
+            <NavLink className={({ isActive }) => ` text-[#e3e3e3] hover:border-b-2 hover:border-yellow-200`} onClick={logout}>logout</NavLink>
+          </ul>
         </button>}
 
       </div>

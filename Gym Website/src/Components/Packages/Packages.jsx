@@ -15,7 +15,7 @@ const Packages = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   return (
-    <div className={`${windowWidth>700 ? 'package-bg' : 'bg-black'}`}>
+    <div className={`${windowWidth>700 ? 'package-bg' : 'bg-black'} fade-in`}>
       <div className='overlay'></div>
       <div className='flex flex-col items-center justify-center'>
         <h2 className=" text-white mt-36 z-10 text-5xl border-b-2">Our <span className='text-yellow-400'>Packages</span></h2>
