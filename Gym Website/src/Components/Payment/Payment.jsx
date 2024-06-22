@@ -16,6 +16,7 @@ const Payment = () => {
     const [membership, setMembership] = useState('');
     const [timing, setTiming] = useState('');
     const [amount, setAmount] = useState(0)
+    const [promo, setPromo] = useState('')
     const[loading,setLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState('');
     const {accessToken} = useContext(AuthContext)
@@ -197,7 +198,8 @@ const Payment = () => {
                             id="upi-id"
                             className="w-full py-2 px-3 border border-gray-300 rounded-lg"
                             placeholder="Enter PROMO CODE"
-                            value={upiId}
+                            value={promo}
+                            onChange(()=>setPromo(e.target.value))
                         />
                     </div>
 
