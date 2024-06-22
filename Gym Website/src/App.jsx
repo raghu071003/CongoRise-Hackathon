@@ -32,7 +32,7 @@ function App() {
           <Route path='/gymGears' element={<GymGears />} />
           <Route path='/packages' element={<Packages />}/>
           <Route path='/timings' element={<Timings /> } />
-          <Route path='/register' element={<Register />} />
+          <Route path='/register' element={isAuthenticated ? <Home /> :  <Register />} />
           <Route path='/supplements' element={<Supplements />} />
           <Route path='/profile' element={isAuthenticated ? <Profile /> : <Navigate to='/login' replace />} />
           <Route path='/checkMembership' element= {isAuthenticated ? <CheckMemberShip />: <Navigate to="/login" replace />} />

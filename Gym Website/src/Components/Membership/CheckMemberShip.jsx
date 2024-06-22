@@ -27,10 +27,10 @@ const CheckMemberShip = () => {
         };
     
         fetchData();
-    }, []); // Ensure useEffect runs again if accessToken changes
+    }, []); 
     
   return (
-    <div className='mem-bg flex items-center justify-center h-screen w-full'>
+    <div className='mem-bg flex items-center justify-center h-screen w-full fade-in'>
       <div className='border-2 border-white rounded-xl p-8 flex flex-col items-center justify-center'>
         <h1 className='text-white text-5xl m-4'>Membership <span className='text-yellow-400'>Details</span></h1>
         <p className='text-white text-2xl p-4'>username:{name}</p>

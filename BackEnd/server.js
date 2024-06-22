@@ -12,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 const saltRounds = 10;
 const mongoUrl = process.env.MONGODB_URI;
+const port = process.env.Port || 4080
 mongoose.connect(mongoUrl, {
     useNewUrlParser: true,
 }).then(() => {
@@ -130,6 +131,6 @@ app.post('/checkmembership',verifyToken,async(req,res)=>{
 })
 
 // Start the server
-app.listen(4080, () => {
+app.listen(port, () => {
     console.log('Server is running on http://localhost:4080');
 });
