@@ -18,28 +18,33 @@ const Register = () => {
   setInterval(() => {
     setLoading(false)
   }, 1000);
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('password', password);
-      formData.append('mobile', mobile);
-  
-      try {
-        const response = await axios.post('https://backendpanthergym.onrender.com/register', formData);
-        if (response.status === 201) {
-          alert('Successfully Registered, Please Login!');
-          navigate('/login');
-        } else if (response.status === 401) {
-          alert('User Exists, Please Login!');
+
+  const handleSubmit =async(e)=>{
+    
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('name',Name);
+    formData.append('email',email);
+    formData.append('password',password);
+    formData.append('mobile',mobile);
+    try{
+      const response = await axios.post('https://backendpanthergym.onrender.com/register',formData,{
+        headers:{
+          "Content-Type":'application/json'
         }
-      } catch (error) {
-        console.log('Error during registration:', error);
-        alert('Registration failed, please try again.');
+      })
+      if (response.status === 201) {
+        alert('Successfully Registered, Please Login!');
+        navigate('/login');
+      } else if (response.status === 401) {
+        alert('User Exists, Please Login!');
       }
-    };
+    }catch(e){
+      console.log(e);
+    }
+    
+    
+  }
   return (
     <>
       {loading ? <Loading toggle={loading} /> :
