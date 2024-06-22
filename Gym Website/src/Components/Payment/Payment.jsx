@@ -199,7 +199,7 @@ const Payment = () => {
                             className="w-full py-2 px-3 border border-gray-300 rounded-lg"
                             placeholder="Enter PROMO CODE"
                             value={promo}
-                            onChange(()=>setPromo(e.target.value))
+                            onChange={((e) => setPromo(e.target.value))}
                         />
                     </div>
 
