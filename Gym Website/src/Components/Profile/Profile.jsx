@@ -62,10 +62,10 @@ const Profile = () => {
                 <p className='text-2xl'>Username : <span className='border-b border-yellow-400'>{name}</span> </p>
                 <p className='text-2xl'>email : <span className='border-b border-yellow-400'>{email}</span></p>
                 <p className='text-2xl'>Mobile : <span className='border-b border-yellow-400'>{mobile}</span></p>
-                <p className='text-2xl'>Membership : <span className='border-b border-yellow-400'>{membership ? `active - ${membership}` : 'inactive'}</span></p>
-                <p className='text-2xl'>Purchase Date : <span className='border-b border-yellow-400'>{membership ? purchasedOn :  'N/A'}</span></p>
-                <p className='text-2xl'>Expiry Date : <span className='border-b border-yellow-400'>{membership ?  expiry : 'N/A'}</span> </p>
-                <p className='text-2xl'>Timings : <span className='border-b border-yellow-400'>{membership? time : 'N/A'}</span></p>
+                <p className='text-2xl'>Membership : <span className='border-b border-yellow-400'>{membership !== 0 ? `active - ${membership}` : 'inactive'}</span></p>
+                <p className='text-2xl'>Purchase Date : <span className='border-b border-yellow-400'>{membership !== 0 ? purchasedOn :  'N/A'}</span></p>
+                <p className='text-2xl'>Expiry Date : <span className='border-b border-yellow-400'>{membership !==0 ?  expiry : 'N/A'}</span> </p>
+                <p className='text-2xl'>Timings : <span className='border-b border-yellow-400'>{membership !==0 ? time : 'N/A'}</span></p>
 
             </div>
         </div>
