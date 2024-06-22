@@ -10,8 +10,9 @@ const Timings = () => {
   
     useEffect(() => {
       const fetchData = async () => {
+        setLoading(true);
         try {
-          const response = await axios.get('http://localhost:4080/timings');
+          const response = await axios.get('https://backendpanthergym.onrender.com/timings');
           setData(response.data);
           setLoading(false);
         } catch (error) {
@@ -22,16 +23,13 @@ const Timings = () => {
   
       fetchData();
     }, []);
-  
-  
-    if (loading) 
     if (error) return <div>Error: {error.message}</div>;
     return (
         <>
-        {loading ? <Loading /> :  
-        <div className='time-bg flex flex-col h-screen w-full fade-in'>
+        {loading ? <Loading toggle={loading}/> :  
+        <div className='time-bg flex flex-col fade-in'>
             <div className='overlay h-screen w-full'></div>
-            <div className='mt-36  z-10 '>
+            <div className='mt-36 z-10 '>
                 <div className='flex flex-col justify-center items-center'>
                     <h1 className='tracking-widest text-5xl text-[#e3e3e3] text-center border-b-4 border-b-yellow-400 w-fit'>Timings</h1>
                     <div className='cards grid gap-4 grid-cols-3 m-10 '>
@@ -39,7 +37,7 @@ const Timings = () => {
                             return <TimingCard key={item.id} timing={item.time} slotsAvailable={item.slots} available={item.available} />
                         })}
                     </div>
-                    <h1 className='text-white text-4xl text-center m-8 mb-36'>The Gym will be open on the <span className='text-yellow-400'>Sundays</span>  as well.</h1>
+                    <h1 className='text-white text-4xl text-center mb-8'>The Gym will be open on the <span className='text-yellow-400'>Sundays</span>  as well.</h1>
                 </div>
 
 

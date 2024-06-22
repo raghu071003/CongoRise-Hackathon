@@ -2,9 +2,13 @@ import React from 'react';
 import { gears } from '../../assets/data';
 import GearCard from './GearCard';
 import { useState,useEffect } from 'react';
+import Loading from '../Loading/Loading';
 
 const GymGears = () => {
-  useEffect(()=>{
+  
+  
+  useEffect(()=>{ 
+    
     document.getElementById('gymgears').classList.add('zoom-in-fast')
     document.getElementById('gear-cont').classList.add('fade-in')
   })
@@ -17,7 +21,8 @@ const GymGears = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   return (
-    <div className={`${windowWidth > 1024 ? 'gym-bg  flex flex-col items-center ' :' bg-black flex flex-col items-center '}` } id='gear-cont' >
+    <>
+      <div className={`${windowWidth > 1024 ? 'gym-bg  flex flex-col items-center ' :' bg-black flex flex-col items-center '}` } id='gear-cont' >
       <div className='overlay'></div>
       <h1 className='text-white text-5xl z-10 border-b-2 mt-36 mb-8 '>GYM <span className='text-yellow-400'>GEAR</span></h1>
       
@@ -31,6 +36,8 @@ const GymGears = () => {
      </div>
       
     </div>
+    </>
+    
   );
 }
 

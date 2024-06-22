@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { supplements } from '../../assets/data';
 import SupplementCard from './SupplementCard';
+import Loading from '../Loading/Loading';
 
 
 const Supplements = () => {
+    const [loading,setLoading] = useState(true);
+    setTimeout(()=>{
+        setLoading(false)
+    },1000)
   return (
+    <>
+    {loading ? <Loading toggle={loading}/> :
     <div className='time-bg flex flex-col h-fit w-full fade-in'>
-            <div className='overlay h-screen w-full'></div>
+            <div className='overlay'></div>
 
             <div className='mt-36  z-10 '>
                 <div className='flex flex-col justify-center items-center'>
@@ -22,6 +29,9 @@ const Supplements = () => {
             </div>
 
         </div>
+    }
+    </>
+    
   );
 };
 

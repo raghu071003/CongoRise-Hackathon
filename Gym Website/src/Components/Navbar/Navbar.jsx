@@ -8,7 +8,8 @@ const Navbar = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const {isAuthenticated,logout} = useContext(AuthContext)
   const [profileopt,setProfileopt] = useState(false)
-
+  const [loading,setLoading] = useState(false)
+ 
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,7 +25,10 @@ const Navbar = () => {
     }
   };
   const toggleProfileOpt = () => (setProfileopt(prev => !prev));
-
+ const handleLogout =()=>{
+  setLoading(true);
+  logout();
+ }
   
 
 return (
@@ -99,7 +103,7 @@ return (
       onClick={toggleMenu}
     />
     {/* Hidden Menu for Mobile */}
-    <ul className={`md:hidden ${menu ? 'flex flex-col' : 'hidden'} absolute top-10 right-0 m-5 p-8 text-5xl gap-10 backdrop-blur-md`}>
+    <ul className={`md:hidden ${menu ? 'flex flex-col' : 'hidden'} absolute top-10 right-0 m-5 p-8 text-5xl gap-10 border bg-black rounded-xl `}>
       <li>
         <NavLink
           onClick={(prev) => setMenu(!prev)}
@@ -152,7 +156,7 @@ return (
         >
           Login
         </NavLink> : <button
-          onClick={logout}
+          onClick={handleLogout}
           className='text-[#e3e3e3] hover:border-b-2 hover:border-yellow-200'
         >
           Logout

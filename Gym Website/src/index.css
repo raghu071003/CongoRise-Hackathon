@@ -217,8 +217,8 @@ input[type=number]::-webkit-outer-spin-button {
   animation: fade 1s forwards;
 }
 .zoom-in {
-  transform: scale(0.5);
-  animation: zoomIn 2s forwards;
+  transform: scale(0.3);
+  animation: zoomIn 0.5s forwards;
 }
 .zoom-in-fast {
   opacity: 0;
@@ -228,7 +228,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .fade-in-out{
   opacity: 0;
-  animation: fadeInOut 1s forwards infinite;
+  animation: fadeInOut 1s  infinite;
 }
 
 @keyframes zoomIn {

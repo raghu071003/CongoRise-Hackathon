@@ -5,10 +5,10 @@ const Loading = ({ toggle }) => {
     const loadingElement = document.getElementById('loading');
     if (toggle) {
       loadingElement.classList.remove('hidden');
-      loadingElement.classList.add('flex', 'fade-in-out');
+      loadingElement.classList.add('flex');
     } else {
-      loadingElement.classList.remove('flex', 'fade-in-out');
-      loadingElement.classList.add('fade-out');
+      loadingElement.classList.remove('flex');
+      loadingElement.classList.add('hidden');
       setTimeout(() => {
         loadingElement.classList.add('hidden');
       }, 500);
@@ -17,7 +17,7 @@ const Loading = ({ toggle }) => {
 
   return (
     <div
-      className='absolute top-0 left-0 h-screen w-full justify-center items-center z-20 bg-black hidden'
+      className='h-screen w-full justify-center items-center fade-in-out z-50 bg-black'
       id='loading'
     >
       <div className='h-44 w-44'>

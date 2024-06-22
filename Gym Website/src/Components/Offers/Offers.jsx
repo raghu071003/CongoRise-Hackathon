@@ -2,9 +2,17 @@ import React from 'react'
 import { OffersData } from '../../assets/data'
 import OfferCard from './OfferCard'
 import JoinNow from '../JoinNow/JoinNow'
+import Loading from '../Loading/Loading'
+import { useState } from 'react'
 
 const Offers = () => {
+    const [loading,setLoading] = useState(true);
+    setTimeout(()=>{
+        setLoading(false)
+    },1000)
   return (
+    <>
+    {loading ? <Loading toggle={loading} /> :
     <div>
       <div className='offer-bg flex flex-col items-center fade-in'>
         <div className='overlay'></div>
@@ -19,6 +27,8 @@ const Offers = () => {
       </div>
       <JoinNow />
     </div>
+}
+    </>
   )
 }
 

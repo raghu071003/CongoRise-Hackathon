@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useContext } from 'react'
 import AuthContext from '../Context/AuthContext';
 import axios from 'axios';
+import Loading from '../Loading/Loading';
 const Profile = () => {
     const { accessToken } = useContext(AuthContext)
         const [name, setName] = useState()
@@ -10,15 +11,18 @@ const Profile = () => {
         const [purchasedOn,setPurchasedOn] = useState('')
         const [time,setTime] = useState('')
         const [expiry,setExpiry] = useState('')
+        const [loading,setLoading] = useState(false)
     useEffect(() => { 
         
         const fetchData = async () => {
+            setLoading(true);
             try {
-                const res = await axios.post('http://localhost:4080/checkmembership', {}, {
+                const res = await axios.post('https://backendpanthergym.onrender.com/checkmembership', {}, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
                 });
+                setLoading(false);
                 if (res.status === 200) {
                     setName(res.data.name);
                     setMembership(res.data.membership);
@@ -41,6 +45,7 @@ const Profile = () => {
                     
                 }
             } catch (error) {
+                setLoading(false);
                 console.error('Error fetching membership:', error);
             }
         };
@@ -48,7 +53,9 @@ const Profile = () => {
         fetchData();
     }, []);
     return (
-        <div className=' profile-bg text-white flex justify-center items-center h-screen w-full fade-in'>
+        <>
+        {loading ? <Loading toggle={loading} /> : 
+            <div className=' profile-bg text-white flex justify-center items-center h-screen w-full fade-in'>
             <div className='overlay'></div>
             <div className='flex flex-col justify-center border p-8 gap-2  rounded-xl z-10'>
                 <h1 className='text-center text-5xl m-10'>My <span className='text-yellow-400'>Profile</span></h1>
@@ -56,12 +63,15 @@ const Profile = () => {
                 <p className='text-2xl'>email : <span className='border-b border-yellow-400'>{email}</span></p>
                 <p className='text-2xl'>Mobile : <span className='border-b border-yellow-400'>{mobile}</span></p>
                 <p className='text-2xl'>Membership : <span className='border-b border-yellow-400'>{membership ? `active - ${membership}` : 'inactive'}</span></p>
-                <p className='text-2xl'>Purchase Date : <span className='border-b border-yellow-400'>{purchasedOn}</span></p>
-                <p className='text-2xl'>Expiry Date : <span className='border-b border-yellow-400'>{expiry}</span> </p>
-                <p className='text-2xl'>Timings : <span className='border-b border-yellow-400'>{time}</span></p>
+                <p className='text-2xl'>Purchase Date : <span className='border-b border-yellow-400'>{membership ? purchasedOn :  'N/A'}</span></p>
+                <p className='text-2xl'>Expiry Date : <span className='border-b border-yellow-400'>{membership ?  expiry : 'N/A'}</span> </p>
+                <p className='text-2xl'>Timings : <span className='border-b border-yellow-400'>{membership? time : 'N/A'}</span></p>
 
             </div>
         </div>
+    }
+        </>
+        
     )
 }
 

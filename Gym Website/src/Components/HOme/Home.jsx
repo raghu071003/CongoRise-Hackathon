@@ -7,6 +7,7 @@ import AuthContext from '../Context/AuthContext'
 
 const Home = () => {
   const navigate = useNavigate();
+  const [loading,setLoading] = useState(true)
   const [animation,setAnimation] = useState(false)
   const { isAuthenticated } = useContext(AuthContext)
   useEffect(()=>{
@@ -15,6 +16,8 @@ const Home = () => {
     document.getElementById('home-cont2').classList.add('fade-in')
     
   })
+  
+
 
 
   return (

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 
 const Payment = () => {
@@ -15,23 +16,30 @@ const Payment = () => {
     const [membership, setMembership] = useState('');
     const [timing, setTiming] = useState('');
     const [amount, setAmount] = useState(0)
-
+    const[loading,setLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState('');
     const {accessToken} = useContext(AuthContext)
+    setInterval(()=>{
+        setLoading(false)
+    },1000)
 
     const handleSubmit =async (e) => {
+        setLoading(true)
         e.preventDefault();
         if(upiId && cardNumber){
             alert('Please choose any one payment method')
+            setLoading(false)
         }
         
         
         if(cardNumber){
             if (!cardNumber || !expiry || !cvv || !membership || !timing) {
                 setErrorMessage('Please fill out all fields.');
+                setLoading(false)
                 return;
             }
             if(cardNumber.length < 16){
+                setLoading(false)
                 setErrorMessage("Invalid Card Number")
                 }
         }
@@ -39,27 +47,29 @@ const Payment = () => {
             
         if(!upiId || !membership || !timing){
             setErrorMessage('Please fill out all fields')
+            setLoading(false)
             return;
         }
         }
-        
-        console.log(document.getElementById('timing').value);
+    
 
         try{
             const timeId=Number(document.getElementById('timing').value);
-            const res = axios.post('http://localhost:4080/getmembership',{membership :`${document.getElementById('membership').value}`,timeId:timeId},{
+            const res = axios.post('https://backendpanthergym.onrender.com/getmembership',{membership :`${document.getElementById('membership').value}`,timeId:timeId},{
                 headers:{
                     'Content-Type': 'application/json',
                     'Authorization' : `Bearer ${accessToken}`
                 }
             }
             )
+            setLoading(false)
             if(res.status === 200){
                 // navigate('/PaymentSuccess');
                 console.log('Success');
             }
         }
         catch(e){
+            setLoading(false)
             console.log(e)
         }
         setCardNumber('');
@@ -72,7 +82,9 @@ const Payment = () => {
 
     };
     return (
-        <div className="min-h-screen pay-bg flex items-center justify-center fade-in">
+        <>
+            {loading ? <Loading toggle={loading}  /> :
+            <div className="min-h-screen pay-bg flex items-center justify-center fade-in">
             <div className='overlay'></div>
             <div className="backdrop-blur-xl p-8 shadow-lg rounded-lg w-full md:w-1/2 lg:w-1/3 z-10">
                 <h2 className="text-2xl font-bold mb-4 tracking-widest text-white">Secure <span className='text-yellow-400'>Payment</span></h2>
@@ -204,6 +216,10 @@ const Payment = () => {
             </div>
 
         </div>
+            
+            }
+        </>
+        
     );
 };
 

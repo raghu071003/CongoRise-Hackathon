@@ -7,8 +7,8 @@ const PackageCard = ({ type, Description, Features, Price }) => {
   const navigate = useNavigate()
 
   return (
-    <div>
-      <div className='flex flex-col p-3 border-2 text-white rounded-xl w-[350px] h-[400px] backdrop-blur-lg shadow-md shadow-white tracking-wider'>
+    <div> 
+      <div className='flex flex-col p-3 border-2 text-white rounded-xl w-[350px] h-[400px] backdrop-blur-lg shadow-md shadow-white tracking-wider zoom-in'>
         <h1 className='text-3xl font-semibold text-center m-1 mt-1 border-b-2 border-b-yellow-400'>{type}</h1>
         <p className='text-lg text-center m-2'>{Description}</p>
         <p className='text-lg text-start mt-2 underline'>Features:</p>
