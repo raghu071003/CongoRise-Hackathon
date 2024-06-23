@@ -25,8 +25,9 @@ const Payment = () => {
     },1000)
 
     const handleSubmit =async (e) => {
-        setLoading(true)
         e.preventDefault();
+        setLoading(true)
+        
         if(upiId && cardNumber){
             alert('Please choose any one payment method')
             setLoading(false)
@@ -65,7 +66,8 @@ const Payment = () => {
             )
             setLoading(false)
             if(res.status === 200){
-                // navigate('/PaymentSuccess');
+                alert('Payment Successfull')
+                navigate('/profile');
                 console.log('Success');
             }
         }
