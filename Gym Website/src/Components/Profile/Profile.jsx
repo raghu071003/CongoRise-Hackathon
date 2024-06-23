@@ -40,8 +40,9 @@ const Profile = () => {
                         const formattedDate = new Date(`${year}-${month}-${day}`);
                         const expiryDate = new Date(formattedDate);
                         expiryDate.setDate(formattedDate.getDate() + 30);
-                        setExpiry(` ${expiryDate.getDate()}/${expiryDate.getMonth() + 1}/${expiryDate.getFullYear()}`);
                         
+
+                        setExpiry(` ${expiryDate.getDate()}/${expiryDate.getMonth() + 1}/${expiryDate.getFullYear()}`);
                     
                 }
             } catch (error) {
