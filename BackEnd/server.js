@@ -82,10 +82,12 @@ app.post('/getmembership', verifyToken, async (req, res) => {
         const email = userData.email;
         const { membership } = req.body;
         const {timeId} = req.body;
-        console.log(timeId);
         var {slots} = await Timings.findOne({timeId})
         const date = new Date();
-        const purchasedOn = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        const purchasedOn = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+        const expiryDate = new Date(purchasedOn);
+        expiryDate.setDate(expiryDate.getDate() + 30);
+        const expiresOn = ` ${expiryDate.getDate()}/${expiryDate.getMonth() + 1}/${expiryDate.getFullYear()}`;
         if (!membership) {
             return res.status(400).json({ message: 'Plan ID is required' });
         }
@@ -94,10 +96,9 @@ app.post('/getmembership', verifyToken, async (req, res) => {
         }
         else{
             slots -= 1;
-            console.log(slots);
             const updatedUser = await Users.findOneAndUpdate(
                 { email },
-                { membership,purchasedOn,timeId},
+                { membership,purchasedOn,timeId,expiresOn},
                 { new: true } 
             );
             const updatedTimings = await Timings.findOneAndUpdate({timeId},{slots})

@@ -20,8 +20,8 @@ const Register = () => {
   }, 1000);
 
   const handleSubmit =async(e)=>{
-    
     e.preventDefault();
+    setLoading(true)
     const formData = new FormData();
     formData.append('name',Name);
     formData.append('email',email);
@@ -33,6 +33,11 @@ const Register = () => {
           "Content-Type":'application/json'
         }
       })
+      if(response.data === 'User Created '){
+        setLoading(false)
+        navigate('/login')
+        alert('User Created Please Login')
+      }
       if (response.status === 201) {
         alert('Successfully Registered, Please Login!');
         navigate('/login');
@@ -40,6 +45,7 @@ const Register = () => {
         alert('User Exists, Please Login!');
       }
     }catch(e){
+      setLoading(false)
       console.log(e);
     }
     
@@ -51,6 +57,7 @@ const Register = () => {
       <div>
       <div className='overlay z-0'>
       </div>
+
       <div className='regbg w-full min-h-screen flex items-center justify-center z-10 flex-wrap fade-in'>
         <div className='overlay'></div>
         <div className='mt-34 flex flex-col md:flex-row justify-around items-center max-w-screen-lg  backdrop-blur-md rounded-xl shadow-xl border'>

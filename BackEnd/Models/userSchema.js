@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     phone: { type: Number, required: true },
     timeId: { type: String, default: '-1' }, 
     membership: { type: String, default: '0' }, 
-    purchasedOn: { type: String, default: 'null' }
+    purchasedOn: { type: String, default: 'null' },
+    expiresOn: { type: String, default: 'null' },
 }, { collection: 'GymUsers' });
 
 module.exports = mongoose.model('Users', userSchema);

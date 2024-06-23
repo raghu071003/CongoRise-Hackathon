@@ -29,21 +29,13 @@ const Profile = () => {
                     setMobile(res.data.phone);
                     setEmail(res.data.email);
                     setPurchasedOn(res.data.purchasedOn)
+                    setExpiry(res.data.expiresOn)
                     const timeId = (res.data.timeId)
                     if(Number(timeId) === 1 ) setTime('5:00AM - 7:00AM')
                     if(Number(timeId) === 2 ) setTime('7:00AM - 9:00AM')
                     if(Number(timeId) === 3 ) setTime('4:00PM - 6:00PM')
                     if(Number(timeId) === 4 ) setTime('6:00PM - 8:00PM')
-                    if(Number(timeId) === 5 ) setTime('8:00PM - 10:00PM')
-                    
-                        const [day, month, year] = purchasedOn.split('/');
-                        const formattedDate = new Date(`${year}-${month}-${day}`);
-                        const expiryDate = new Date(formattedDate);
-                        expiryDate.setDate(formattedDate.getDate() + 30);
-                        
-
-                        setExpiry(` ${expiryDate.getDate()}/${expiryDate.getMonth() + 1}/${expiryDate.getFullYear()}`);
-                    
+                    if(Number(timeId) === 5 ) setTime('8:00PM - 10:00PM')                    
                 }
             } catch (error) {
                 setLoading(false);
