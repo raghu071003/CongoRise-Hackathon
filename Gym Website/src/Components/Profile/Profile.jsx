@@ -24,6 +24,7 @@ const Profile = () => {
                 });
                 setLoading(false);
                 if (res.status === 200) {
+                    console.log(res.data)
                     setName(res.data.name);
                     setMembership(res.data.membership);
                     setMobile(res.data.phone);
