@@ -23,6 +23,7 @@ const Profile = () => {
                     }
                 });
                 setLoading(false);
+                console.log(res.data);
                 if (res.status === 200) {
                     console.log(res.data)
                     setName(res.data.name);
@@ -30,7 +31,7 @@ const Profile = () => {
                     setMobile(res.data.phone);
                     setEmail(res.data.email);
                     setPurchasedOn(res.data.purchasedOn)
-                    setExpiry(res.data.expiresOn)
+                    setExpiry(res.data.expiresOn.split('/').join('-'))
                     const timeId = (res.data.timeId)
                     if(Number(timeId) === 1 ) setTime('5:00AM - 7:00AM')
                     if(Number(timeId) === 2 ) setTime('7:00AM - 9:00AM')
