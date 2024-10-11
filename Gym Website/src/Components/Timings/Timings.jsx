@@ -12,7 +12,7 @@ const Timings = () => {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const response = await axios.get('https://backendpanthergym.onrender.com/timings');
+          const response = await axios.get('http://localhost:4080/timings');
           setData(response.data);
           setLoading(false);
         } catch (error) {

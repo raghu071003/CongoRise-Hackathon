@@ -8,7 +8,7 @@ const TokenRefreshComponent = () => {
   const refresh = async () => {
     if (refreshToken) {
       try {
-        const res = await axios.post('https://backendpanthergym.onrender.com/refresh', {}, {
+        const res = await axios.post('http://localhost:4080/refresh', {}, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${refreshToken}`

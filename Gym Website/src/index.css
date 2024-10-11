@@ -42,21 +42,21 @@ body {
 }
 
 .package-bg {
-  background: url('https://wallpaperaccess.com/full/804838.jpg');
+  background: url('assets/package.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .package2-bg {
-  background: url('https://wallpaperaccess.com/full/834254.jpg');
+  background: url('assets/package-2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .regbg {
-  background: url('https://wallpapercave.com/wp/wp4436668.jpg');
+  background: url('assets/registerwebp.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

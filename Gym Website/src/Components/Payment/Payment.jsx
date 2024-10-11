@@ -57,7 +57,7 @@ const Payment = () => {
 
         try{
             const timeId=Number(document.getElementById('timing').value);
-            const res = axios.post('https://backendpanthergym.onrender.com/getmembership',{membership :`${document.getElementById('membership').value}`,timeId:timeId},{
+            const res = axios.post('http://localhost:4080/getmembership',{membership :`${document.getElementById('membership').value}`,timeId:timeId},{
                 headers:{
                     'Content-Type': 'application/json',
                     'Authorization' : `Bearer ${accessToken}`
