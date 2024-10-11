@@ -16,16 +16,18 @@ import Payment from './Components/Payment/Payment'
 import CheckMemberShip from './Components/Membership/CheckMemberShip'
 import Profile from './Components/Profile/Profile'
 import WorkoutPlanGenerator from './Components/WorkoutPlanGenerator/WorkoutGenerator'
+import Loading from './Components/Loading/Loading.jsx'
 
 
 
 function App() {
-  const {isAuthenticated} = useContext(AuthContext)
+  const {isAuthenticated,loading} = useContext(AuthContext)
   return (
     
       <BrowserRouter>
       <Navbar />
         <Routes>
+        {loading ? <Loading /> : ""}
         <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" replace />} />
           <Route path='/offers' element={<Offers />} />
           <Route path='/gymGears' element={<GymGears />} />

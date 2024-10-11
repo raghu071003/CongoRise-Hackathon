@@ -8,7 +8,7 @@ const Navbar = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const {isAuthenticated,logout} = useContext(AuthContext)
   const [profileopt,setProfileopt] = useState(false)
-  const [loading,setLoading] = useState(false)
+  const {loading,setLoading} = useContext(AuthContext)
  
 
   useEffect(() => {
@@ -25,9 +25,10 @@ const Navbar = () => {
     }
   };
   const toggleProfileOpt = () => (setProfileopt(prev => !prev));
- const handleLogout =()=>{
+  const handleLogout =()=>{
   setLoading(true);
   logout();
+  setLoading(false)
  }
   
 
@@ -89,7 +90,7 @@ return (
           
           <ul className={`${profileopt ? 'flex flex-col' : 'hidden'} absolute gap-3 my-3` }>
             <NavLink className={({ isActive }) => `${isActive ? 'border-b-4 border-yellow-400' : ''} text-[#e3e3e3] hover:border-b-2 hover:border-yellow-200`} to='/profile'>Profile</NavLink>
-            <NavLink className={({ isActive }) => ` text-[#e3e3e3] hover:border-b-2 hover:border-yellow-200`} onClick={logout}>logout</NavLink>
+            <NavLink className={({ isActive }) => ` text-[#e3e3e3] hover:border-b-2 hover:border-yellow-200`} onClick={handleLogout}>logout</NavLink>
           </ul>
         </button>}
 

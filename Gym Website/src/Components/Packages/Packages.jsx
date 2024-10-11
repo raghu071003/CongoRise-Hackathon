@@ -36,7 +36,7 @@ const Packages = () => {
       </div>
     </div>
     <JoinNow />
-    <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+    <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-[60]'>
           <GenerateWorkoutPlanButton />
       </div>
   </div>

@@ -5,7 +5,6 @@ import Loading from '../Loading/Loading';
 import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 
 const Timings = () => {
-  console.log("Mounted");
   
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

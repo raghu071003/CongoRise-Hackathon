@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken'));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken'));
   const [invalidlogin,setInvalidLogin] = useState(true);
-
+  const [loading,setLoading] = useState(false)
   const login = async (username, password) => {
     try {
       const response = await axios.post('https://backend-panther-a7he.onrender.com/login', {
@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, accessToken, refreshAccessToken }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, accessToken, refreshAccessToken,loading,setLoading }}>
       {children}
     </AuthContext.Provider>
   );
