@@ -151,7 +151,8 @@ app.post('/generate-workout', async (req, res) => {
     Fitness Goal: ${goal}
     Experience Level: ${experience}
     Focus Area: ${focusArea}
-    Available Equipment: ${availableEquipment}`;
+    Available Equipment: ${availableEquipment}
+    for a week giving day by day plans`;
 
   try {
     const result = await model.generateContent(prompt);
