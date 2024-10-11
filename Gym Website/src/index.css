@@ -23,7 +23,7 @@ body {
 }
 
 .pay-bg {
-  background: url('https://wallpapercave.com/wp/wp5339186.jpg');
+  background: url('assets/payment.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -63,7 +63,7 @@ body {
 }
 
 .offer-bg {
-  background: url('https://wallpapercave.com/wp/wp9160581.jpg');
+  background: url('assets/offerBgjpg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 
@@ -71,34 +71,34 @@ body {
 }
 
 .time-bg {
-  background: url('https://wallpaperaccess.com/full/3090148.jpg');
+  background: url('assets/timeBGjpg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .home-bg {
-  background: url('https://wallpaperaccess.com/full/834286.jpg');
+  background: url('assets/HomeBg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 .profile-bg{
-  background: url(https://wallpapercave.com/wp/wp9220724.jpg);
+  background: url('assets/profileBg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .sup-bg {
-  background: url('https://wallpapercave.com/wp/wp12424989.jpg');
+  background: url('assets/supBg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .login-bg {
-  background: url('https://wallpaperaccess.com/full/1244688.jpg');
+  background: url('assets/LoginBG.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

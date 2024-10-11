@@ -15,14 +15,11 @@ const Register = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-
-  // Simple email validation function
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
 
-  // Validation for the form
   const validateForm = () => {
     if (!Name.trim()) {
       setError('Name is required');
@@ -65,35 +62,49 @@ const Register = () => {
 
       if (response.status === 201) {
         alert('Successfully Registered, Please Login!');
+        setName(''); // Clear form
+        setEmail('');
+        setPassword('');
+        setMobile('');
         navigate('/login');
       } else if (response.status === 401) {
         alert('User Exists, Please Login!');
       }
     } catch (e) {
       console.error(e);
-      setLoading(false);
       setError('An error occurred while registering');
+    } finally {
+      setLoading(false);
     }
   };
+
+  React.useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   return (
     <>
       {loading ? <Loading toggle={loading} /> :
       <div>
         <div className='overlay z-0'></div>
-        <div className='regbg w-full min-h-screen flex items-center justify-center z-10 flex-wrap fade-in'>
+        <div className='regbg w-full min-h-screen flex items-center justify-center z-10 flex-wrap fade-in '>
           <div className='overlay'></div>
           <div className='mt-34 flex flex-col md:flex-row justify-around items-center max-w-screen-lg backdrop-blur-md rounded-xl shadow-xl border'>
             <div className='flex flex-col justify-center items-center h-[550px]'>
               <h1 className='text-white text-4xl text-center mb-2'>Panther <span className='text-yellow-400'>GYM</span></h1>
               
-              <form action="" className='flex flex-col items-center justify-center gap-3 w-96 ' onSubmit={handleSubmit}>
-                <input type="text" placeholder='Name' className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' onChange={(e) => setName(e.target.value)} />
-                <input type="email" placeholder='Email' className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" placeholder='Password' className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' onChange={(e) => setPassword(e.target.value)} />
-                <input type="number" placeholder='Mobile' className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' onChange={(e) => setMobile(e.target.value)} />
+              <form action="" className={`flex flex-col items-center justify-center gap-3 w-96`} onSubmit={handleSubmit}>
+                <input type="text" placeholder='Name' value={Name} className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' onChange={(e) => setName(e.target.value)} />
+                <input type="email" placeholder='Email' value={email} className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' onChange={(e) => setEmail(e.target.value)} />
+                <input type="password" placeholder='Password' value={password} className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' onChange={(e) => setPassword(e.target.value)} />
+                <input type="number" placeholder='Mobile' value={mobile} className='outline-none bg-transparent text-2xl p-4 border-b-2 text-white' maxLength={10} onChange={(e) => setMobile(e.target.value.slice(0, 10))} />
                 
-                <ErrorMessage error={error} /> {/* Display error message here */}
+                {error ? <ErrorMessage error={error} />: ""}
                 
                 <p className='text-white text-xl m-4'>Already have an account? <span className='text-yellow-400 cursor-pointer' onClick={() => navigate('/login')}>Login</span></p>
                 <button className='text-white border-2 border-yellow-400 p-3 rounded-xl mt-4 hover:bg-white hover:text-black' type='submit'>Register</button>

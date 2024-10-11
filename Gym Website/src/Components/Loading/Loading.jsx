@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import logo from '../../assets/LoadingLogo.png'
 
 const Loading = ({ toggle }) => {
   useEffect(() => {
@@ -17,12 +18,12 @@ const Loading = ({ toggle }) => {
 
   return (
     <div
-      className='h-screen w-full justify-center items-center fade-in-out z-50 bg-black'
+      className='h-screen w-full justify-center items-center fade-in-out z-50 bg-black flex'
       id='loading'
     >
-      <div className='h-44 w-44'>
+      <div className='h-24 w-24'>
         <img
-          src='https://res.cloudinary.com/dwcuayp2u/image/upload/v1718891440/Loading_ltzmxg.png'
+          src={logo}
           alt='Loading'
           className='loading-bg'
         />
