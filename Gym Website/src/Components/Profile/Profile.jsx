@@ -18,7 +18,7 @@ const Profile = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await axios.post('https://backend-panther-a7he.onrender.comcheckmembership', {}, {
+                const res = await axios.post('https://backend-panther-a7he.onrender.com/checkmembership', {}, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }

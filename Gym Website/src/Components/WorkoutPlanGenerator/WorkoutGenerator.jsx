@@ -16,7 +16,7 @@ const GeminiWorkoutPlanGenerator = () => {
     setFormVisible(false); // Hide the form when submitted
 
     try {
-      const response = await axios.post('https://backend-panther-a7he.onrender.comgenerate-workout', {
+      const response = await axios.post('https://backend-panther-a7he.onrender.com/generate-workout', {
         goal,
         experience,
         focusArea,

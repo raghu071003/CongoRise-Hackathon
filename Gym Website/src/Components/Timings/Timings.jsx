@@ -13,7 +13,7 @@ const Timings = () => {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const response = await axios.get('https://backend-panther-a7he.onrender.comtimings');
+          const response = await axios.get('https://backend-panther-a7he.onrender.com/timings');
           setData(response.data);
           setLoading(false);
         } catch (error) {

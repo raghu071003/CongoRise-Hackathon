@@ -55,7 +55,7 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post('https://backend-panther-a7he.onrender.comregister', formData, {
+      const response = await axios.post('https://backend-panther-a7he.onrender.com/register', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
