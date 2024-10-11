@@ -4,6 +4,7 @@ import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import ErrorMessage from '../ErrorMessage/ErrorMessage'; // Import the ErrorMessage component
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 
 const Register = () => {
   const [Name, setName] = useState('');
@@ -54,7 +55,7 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:4080/register', formData, {
+      const response = await axios.post('https://backend-panther-a7he.onrender.comregister', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -112,6 +113,9 @@ const Register = () => {
             </div>
           </div>
         </div>
+        <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
       </div>
       }
     </>

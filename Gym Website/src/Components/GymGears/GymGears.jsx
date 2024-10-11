@@ -1,14 +1,15 @@
 import React from 'react';
 import { gears } from '../../assets/data';
 import GearCard from './GearCard';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Loading from '../Loading/Loading';
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 
 const GymGears = () => {
-  
-  
-  useEffect(()=>{ 
-    
+
+
+  useEffect(() => {
+
     document.getElementById('gymgears').classList.add('zoom-in-fast')
     document.getElementById('gear-cont').classList.add('fade-in')
   })
@@ -22,22 +23,25 @@ const GymGears = () => {
   }, []);
   return (
     <>
-      <div className={`${windowWidth > 1024 ? 'gym-bg  flex flex-col items-center ' :' bg-black flex flex-col items-center '}` } id='gear-cont' >
-      <div className='overlay'></div>
-      <h1 className='text-white text-5xl z-10 border-b-2 mt-36 mb-8 '>GYM <span className='text-yellow-400'>GEAR</span></h1>
-      
-     <div className='flex justify-center items-center 'id='gymgears'>
-      
-     <div className='cards-gear gap-5 flex-1 justify-center items-center grid m-10'>
-        {gears.map((item, i) => (
-          <GearCard key={i} name={item.name} img={item.img} link={item.link} />
-        ))}
+      <div className={`${windowWidth > 1024 ? 'gym-bg  flex flex-col items-center ' : ' bg-black flex flex-col items-center '}`} id='gear-cont' >
+        <div className='overlay'></div>
+        <h1 className='text-white text-5xl z-10 border-b-2 mt-36 mb-8 '>GYM <span className='text-yellow-400'>GEAR</span></h1>
+
+        <div className='flex justify-center items-center ' id='gymgears'>
+
+          <div className='cards-gear gap-5 flex-1 justify-center items-center grid m-10'>
+            {gears.map((item, i) => (
+              <GearCard key={i} name={item.name} img={item.img} link={item.link} />
+            ))}
+          </div>
+        </div>
+        <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton   />
       </div>
-     </div>
-      
-    </div>
+
+      </div>
     </>
-    
+
   );
 }
 

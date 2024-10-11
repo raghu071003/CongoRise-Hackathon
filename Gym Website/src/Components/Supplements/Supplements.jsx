@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { supplements } from '../../assets/data';
 import SupplementCard from './SupplementCard';
 import Loading from '../Loading/Loading';
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 
 
 const Supplements = () => {
@@ -27,6 +28,9 @@ const Supplements = () => {
 
 
             </div>
+            <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
 
         </div>
     }

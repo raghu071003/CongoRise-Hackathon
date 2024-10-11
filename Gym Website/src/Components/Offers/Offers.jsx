@@ -4,6 +4,7 @@ import OfferCard from './OfferCard'
 import JoinNow from '../JoinNow/JoinNow'
 import Loading from '../Loading/Loading'
 import { useState } from 'react'
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button'
 
 const Offers = () => {
     const [loading,setLoading] = useState(true);
@@ -26,6 +27,9 @@ const Offers = () => {
           <h1 className='text-white z-10 text-center text-4xl p-8 mt-40 mb-40'>Use the Promocode at the payment page to avial the offers. T&C Apply</h1>
       </div>
       <JoinNow />
+      <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
     </div>
 }
     </>

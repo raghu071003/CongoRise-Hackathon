@@ -5,6 +5,7 @@ import JoinNow from '../JoinNow/JoinNow'
 import { useState,useEffect } from 'react'
 import AuthContext from '../Context/AuthContext'
 import Loading from '../Loading/Loading'
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button'
 
 const Packages = () => {
   
@@ -35,6 +36,9 @@ const Packages = () => {
       </div>
     </div>
     <JoinNow />
+    <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
   </div>
 }
 

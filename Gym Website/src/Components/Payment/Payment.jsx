@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading';
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 
 
 const Payment = () => {
@@ -57,7 +58,7 @@ const Payment = () => {
 
         try{
             const timeId=Number(document.getElementById('timing').value);
-            const res = axios.post('http://localhost:4080/getmembership',{membership :`${document.getElementById('membership').value}`,timeId:timeId},{
+            const res = axios.post('https://backend-panther-a7he.onrender.comgetmembership',{membership :`${document.getElementById('membership').value}`,timeId:timeId},{
                 headers:{
                     'Content-Type': 'application/json',
                     'Authorization' : `Bearer ${accessToken}`
@@ -218,7 +219,9 @@ const Payment = () => {
                 </form>
                 <p className='text-center text-sm text-white tracking-widest m-3'>This is a dummy Payment Page.The payment API is not integrated</p>
             </div>
-
+            <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
         </div>
             
             }

@@ -12,7 +12,7 @@ const CheckMemberShip = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.post('http://localhost:4080/checkmembership', {}, {
+                const res = await axios.post('https://backend-panther-a7he.onrender.comcheckmembership', {}, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }

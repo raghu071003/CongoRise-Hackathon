@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import TimingCard from './TimingCard'
 import axios from 'axios'
 import Loading from '../Loading/Loading';
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 
 const Timings = () => {
     const [data, setData] = useState(null);
@@ -12,7 +13,7 @@ const Timings = () => {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const response = await axios.get('http://localhost:4080/timings');
+          const response = await axios.get('https://backend-panther-a7he.onrender.comtimings');
           setData(response.data);
           setLoading(false);
         } catch (error) {
@@ -42,7 +43,9 @@ const Timings = () => {
 
 
             </div>
-
+            <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
         </div>
         }
         </>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../Context/AuthContext';
 import Loading from '../Loading/Loading';
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -48,6 +49,9 @@ const Login = () => {
           <p className='text-white text-xl m-4'>Dont have an account? <span className='text-yellow-400 cursor-pointer' onClick={() => navigate('/register')}>Register Here</span></p>
           <button className='text-white border-2 border-yellow-400 p-3 rounded-xl mt-4 hover:bg-white hover:text-black' type='submit'>Login</button>
         </form>
+        <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
       </div>    
     }  
     </>

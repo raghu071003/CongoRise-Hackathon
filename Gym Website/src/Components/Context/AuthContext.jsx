@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:4080/login', {
+      const response = await axios.post('https://backend-panther-a7he.onrender.comlogin', {
         email: username,
         password: password,
       });
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async() => {
     const refreshToken = localStorage.getItem('refreshToken');
     try {
-      const response = await fetch('http://localhost:4080/logout', {
+      const response = await fetch('https://backend-panther-a7he.onrender.comlogout', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${refreshToken}`
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   const refreshAccessToken = async () => {
     if (refreshToken) {
       try {
-        const res = await axios.post('http://localhost:4080/refresh', {}, {
+        const res = await axios.post('https://backend-panther-a7he.onrender.comrefresh', {}, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${refreshToken}`,

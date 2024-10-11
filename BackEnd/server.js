@@ -137,6 +137,32 @@ app.post('/checkmembership',verifyToken,async(req,res)=>{
 
 })
 
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+
+
+// Initialize GoogleGenerativeAI with your API key
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
+app.post('/generate-workout', async (req, res) => {
+  const { goal, experience, focusArea, availableEquipment } = req.body;
+
+  const prompt = `Generate a workout plan for a user with the following details:
+    Fitness Goal: ${goal}
+    Experience Level: ${experience}
+    Focus Area: ${focusArea}
+    Available Equipment: ${availableEquipment}`;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const workoutPlan = result.response.text();
+    res.json({ plan: workoutPlan });
+  } catch (error) {
+    console.error('Error generating workout plan:', error);
+    res.status(500).json({ error: 'Failed to generate workout plan' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
     console.log('Server is running on http://localhost:4080');

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import AuthContext from '../Context/AuthContext'
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,12 +40,11 @@ const Home = () => {
               <p className='text-white text-3xl'> A year from now you may wish you had started today.</p>
               <p className='sub-font text-[#e3e3e3] text-end text-xl'>-Karen Lamb</p>
             </div>
-
-
           </div>
         </div>
-
-
+      </div>
+      <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
       </div>
     </div>
   )

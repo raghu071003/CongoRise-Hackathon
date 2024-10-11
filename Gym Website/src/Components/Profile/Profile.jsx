@@ -2,6 +2,7 @@ import React, { useEffect, useState,useContext } from 'react'
 import AuthContext from '../Context/AuthContext';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
+import GenerateWorkoutPlanButton from '../WorkoutGeneratorButton/Button';
 const Profile = () => {
     const { accessToken } = useContext(AuthContext)
         const [name, setName] = useState()
@@ -17,7 +18,7 @@ const Profile = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await axios.post('http://localhost:4080/checkmembership', {}, {
+                const res = await axios.post('https://backend-panther-a7he.onrender.comcheckmembership', {}, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
@@ -63,6 +64,9 @@ const Profile = () => {
                 <p className='text-2xl'>Timings : <span className='border-b border-yellow-400'>{membership !== '0' ? time : 'N/A'}</span></p>
 
             </div>
+            <div className='fixed bottom-0 right-0 flex items-center justify-center m-8 z-50'>
+          <GenerateWorkoutPlanButton />
+      </div>
         </div>
     }
         </>
